@@ -1,0 +1,19 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "node-osc": "*", 
+    "sqlite3" : "*",
+    "moment": "*", 
+    "d3": "*",
+    "async": "*"
+  }
+  , "engines": {
+      "node": "0.10.x"
+    , "npm": "1.4.x"
+  }
+}
