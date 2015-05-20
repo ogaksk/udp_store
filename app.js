@@ -48,7 +48,7 @@ function degreeO(upY, downY) {
 
 function absStats(xs, ys) {
   var ret = [];
-  for(var i = 0; i < 36; i ++) {
+  for(var i = 0; i < facePoints; i ++) {
     ret[i] = Math.sqrt( (xs[i] * xs[i]) + (ys[i] * ys[i]) );
   }
   return ret;
@@ -56,7 +56,7 @@ function absStats(xs, ys) {
 
 function absStatsAndAmp(xs, ys) {
   var ret = [];
-  for(var i = 0; i < 36; i ++) {
+  for(var i = 0; i < facePoints; i ++) {
     ret.push(i * 400 );
     ret.push( scale(Math.sqrt( (xs[i] * xs[i]) + (ys[i] * ys[i]))) );
   }
@@ -65,7 +65,7 @@ function absStatsAndAmp(xs, ys) {
 
 function multipleArray(arr, coef) {
   var ret = [];
-  for(var i = 0; i < 36; i ++) {
+  for(var i = 0; i < facePoints; i ++) {
     ret[i] = arr[i] * i * 0.2;
   }
   return ret;
@@ -74,15 +74,14 @@ function multipleArray(arr, coef) {
 
 
 function setScale(scales, domains, rangeStart, rangeEnd) {
-
-  for(var i = 0; i < 36; i ++) {
+  for(var i = 0; i < facePoints; i ++) {
     scales[i] = d3.scale.linear().domain([domains[i][0], domains[i][1]]).range([rangeStart, rangeEnd]);
   }
 }
 
 function scaleDatas(scales, datas) {
   var ret = [];
-  for(var i = 0; i < 36; i ++) {
+  for(var i = 0; i < facePoints; i ++) {
     ret.push(scales[i](datas[i]));
 
   }
@@ -137,6 +136,7 @@ if(process.argv[2] == "fire") {
   var scalesY = [];
   var scalesX = [];
   var count = 0;
+  var facePoints;
 
 
   async.series([
@@ -164,6 +164,7 @@ if(process.argv[2] == "fire") {
       });
     },
     function (callback) {
+      facePoints = datas[0].length;
       var ys = parseDatas(datas, "y");
       var xs = parseDatas(datas, "x");
       for (var i = 0; i < ys[0].length; i ++) {
